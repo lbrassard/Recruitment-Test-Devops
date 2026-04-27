@@ -25,3 +25,12 @@ docker build -t nectari.repository.io/datasources/mssql:2019-latest .
 - `Dockerfile`
 - Optional: `docker-compose.yml` showing how to run it
 - A short note explaining how you restore the data
+
+**NOTE FROM Louis-Andre**
+- The data is restored in the initialisation script init_db.sh which spins up an sql instance during build time and use the provided script to seed the data in the build layer of the dockerfile
+
+
+To build, run and check the data is well seeded (performed under gitbash/windows so the exec command might run differently on other os)
+docker build -t nectari.repository.io/datasources/mssql:2019-latest
+docker run -d --name mssql19 nectari.repository.io/datasources/mssql:2019-latest
+docker exec -i //opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P Nectari2026! -C -Q "SELECT name FROM sys.databases GO"

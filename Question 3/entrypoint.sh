@@ -6,3 +6,4 @@ echo ""
 
 echo "[Log:::] Starting the server"
 /opt/mssql/bin/sqlservr
+2
